@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('writing'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+<Base
+  title="Writing"
+  description="Notes and write-ups on security, detection engineering, and IoT by Ignacio Pineda."
+>
+  <p class="eyebrow"><span class="n">02.</span> <span class="txt">Writing</span></p>
+  <h1>Writing</h1>
+  <p class="lead">Notes and write-ups on security, detection engineering, and the occasional hardware teardown.</p>
+
+  {posts.length === 0 ? (
+    <div class="empty">
+      <p class="empty-title">No posts yet.</p>
+      <p>Write-ups are in progress. Subscribe via <a href="/rss.xml" class="inline-link">RSS</a>.</p>
+    </div>
+  ) : (
+    <ul class="posts">
+      {posts.map((post) => (
+        <li>
+          <a class="post-link" href={`/writing/${post.id}`}>
+            <span class="date">{post.data.pubDate.toISOString().slice(0, 10)}</span>
+            <span class="title">{post.data.title}</span>
+            <span class="desc">{post.data.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
+
+<style>
+  h1 { margin-bottom: var(--s2); }
+  .lead { margin-bottom: var(--s6); }
+
+  .empty { padding: var(--s6) 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .empty-title { color: var(--t-hi); font-weight: 600; margin: 0 0 .4rem; }
+  .empty p:last-child { margin: 0; color: var(--t-mut); }
+
+  .posts { list-style: none; margin: 0; padding: 0; }
+  .post-link {
+    display: grid; grid-template-columns: 7rem 1fr; gap: .25rem var(--s3);
+    padding: var(--s3) 0; border-top: 1px solid var(--border);
+    transition: border-color var(--dur) var(--ease);
+  }
+  .posts li:last-child .post-link { border-bottom: 1px solid var(--border); }
+  .post-link:hover { border-color: var(--accent-line); }
+  .date { font-family: var(--font-mono); font-size: .75rem; color: var(--t-sub); padding-top: .3em; }
+  .title { font-size: 1.2rem; font-weight: 600; color: var(--t-hi); letter-spacing: -0.01em; }
+  .post-link:hover .title { color: var(--accent); }
+  .desc { grid-column: 2; color: var(--t-mut); font-size: .95rem; }
+
+  @media (max-width: 34rem) {
+    .post-link { grid-template-columns: 1fr; }
+    .desc { grid-column: 1; }
+  }
+</style>

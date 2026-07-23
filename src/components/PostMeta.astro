@@ -1,0 +1,22 @@
+---
+interface Props {
+  date: Date;
+  readingTime: string;
+}
+
+const { date, readingTime } = Astro.props;
+const formattedDate = date.toISOString().slice(0, 10);
+---
+<p class="post-meta">
+  <time datetime={formattedDate}>{formattedDate}</time>
+  <span aria-hidden="true">·</span>
+  <span>{readingTime}</span>
+</p>
+
+<style>
+  .post-meta {
+    display: flex; align-items: center; gap: .6em;
+    color: var(--t-sub); font-family: var(--font-mono); font-size: .78rem;
+    margin: calc(var(--s1) * -1) 0 var(--s3);
+  }
+</style>

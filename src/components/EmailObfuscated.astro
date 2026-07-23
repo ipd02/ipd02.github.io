@@ -1,0 +1,21 @@
+---
+interface Props {
+  user: string;
+  domain: string;
+  label?: string;
+}
+
+const { user, domain, label } = Astro.props;
+const email = `${user}@${domain}`;
+const reversed = email.split('').reverse().join('');
+---
+<a href={`mailto:${email}`} class="email" aria-label={`Email: ${email}`}>
+  <span>{label ?? reversed}</span>
+</a>
+
+<style>
+  .email span {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+</style>

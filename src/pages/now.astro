@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+
+const items = [
+  { k: 'Work', v: 'Security Engineer at Bending Spoons — protecting a global consumer-app portfolio.' },
+  { k: 'Reading', title: 'Getting to Yes', v: ' by Roger Fisher and William Ury.' },
+  { k: 'Learning', v: 'Windows internals and detection engineering, in more depth.' },
+  { k: 'Open to', v: 'Conversations about security roles across the EU.' },
+];
+---
+<Base title="Now" description="What Ignacio Pineda is focused on right now.">
+  <p class="eyebrow"><span class="n">03.</span> <span class="txt">Now</span></p>
+  <h1>What I'm focused on</h1>
+  <p class="updated"><time datetime="2026-07-22">Updated 22 Jul 2026</time></p>
+
+  <dl class="now">
+    {items.map((it) => (
+      <div class="row">
+        <dt>{it.k}</dt>
+        <dd>{it.title && <em>{it.title}</em>}{it.v}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <p class="credit"><a href="https://nownownow.com/about" class="inline-link">Inspired by Derek Sivers' /now movement.</a></p>
+</Base>
+
+<style>
+  h1 { margin-bottom: var(--s2); }
+  .updated { font-family: var(--font-mono); font-size: .75rem; color: var(--t-sub); margin: 0 0 var(--s5); }
+  .now { margin: 0; }
+  .row { display: grid; grid-template-columns: 8rem 1fr; gap: var(--s2); padding: var(--s3) 0; border-top: 1px solid var(--border); }
+  .row:last-child { border-bottom: 1px solid var(--border); }
+  dt { font-family: var(--font-mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); padding-top: .25em; }
+  dd { margin: 0; color: var(--t); }
+  .credit { margin-top: var(--s5); color: var(--t-mut); }
+  @media (max-width: 34rem) { .row { grid-template-columns: 1fr; gap: .3rem; } }
+</style>

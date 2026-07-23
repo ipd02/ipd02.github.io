@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Ignacio Pineda"
+  description="Security Engineer — security operations, threat detection, incident response, offensive testing, and the automation that scales security."
+  bare
+>
+  <!-- Full-screen name hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hi reveal" style="--i:0">Hi, my name is</p>
+      <h1 class="reveal" style="--i:1">Ignacio Pineda.</h1>
+      <p class="sub reveal" style="--i:2">Security engineer.</p>
+      <div class="cta reveal" style="--i:3">
+        <a href="#about" class="about-btn">
+          About me
+          <span class="arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <p class="eyebrow"><span class="n">01.</span> <span class="txt">About me</span></p>
+        <p>
+          I'm a Security Engineer at
+          <a href="https://bendingspoons.com" class="inline-link">Bending Spoons</a>,
+          where I protect a global consumer-app portfolio. I work across
+          security operations, threat detection, incident response, digital
+          forensics, malware analysis, vulnerability management, and offensive
+          testing — plus the software engineering to build the automation that
+          scales it. Most of my hands-on experience so far has been on the
+          defensive side.
+        </p>
+        <p>
+          Before Bending Spoons I spent two years on cybersecurity R&amp;D at the
+          <a href="https://www.nics.uma.es" class="inline-link">NICS Lab</a>,
+          working on honeynets for smart-grid infrastructure, OT protocol
+          reverse-engineering, and connected-vehicle security.
+        </p>
+        <p>
+          I've consistently been at the top academically: I graduated top of my
+          Computer Science class and received the Extraordinary Award for the
+          highest marks in the degree. I also hold a Master's in Cybersecurity.
+        </p>
+        <p class="links">
+          <a href="/experience" class="inline-link">Experience →</a>
+          <a href="/writing" class="inline-link">Writing →</a>
+          <a href="/contact" class="inline-link">Contact →</a>
+        </p>
+      </div>
+
+      <div class="about-photo">
+        <div class="frame">
+          <img
+            src="/photo.jpg"
+            alt="Ignacio Pineda"
+            width="320" height="400"
+            loading="lazy" decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: calc(100svh - 4rem);
+    display: grid; place-items: center;
+    padding: var(--s4) var(--s3);
+    text-align: center;
+  }
+  .hero-inner { max-width: 42rem; }
+  .hi { font-family: var(--font-mono); color: var(--accent); font-size: 1rem; margin: 0 0 var(--s2); }
+  .hero h1 { font-size: clamp(3rem, 12vw, 7rem); margin: 0 0 var(--s2); line-height: 1.02; }
+  .sub { font-size: clamp(1.1rem, 3vw, 1.6rem); color: var(--t-mut); margin: 0 0 var(--s5); }
+
+  .cta { display: flex; justify-content: center; }
+  .about-btn {
+    display: inline-flex; align-items: center; gap: .6em;
+    font-size: 1rem; font-weight: 500;
+    padding: .85em 1.6em; border-radius: var(--r);
+    border: 1px solid var(--accent-line); color: var(--accent);
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease),
+                border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  }
+  .about-btn:hover {
+    background: var(--accent-tint); border-color: var(--accent);
+    color: var(--accent-hi); transform: translateY(-2px);
+  }
+  .about-btn .arrow { transition: transform var(--dur) var(--ease); }
+  .about-btn:hover .arrow { transform: translateY(3px); }
+  @media (prefers-reduced-motion: no-preference) {
+    .about-btn .arrow { animation: nudge 1.8s var(--ease) infinite; }
+    @keyframes nudge { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+    .about-btn:hover .arrow { animation: none; }
+  }
+
+  /* ABOUT */
+  .about {
+    max-width: var(--page); margin: 0 auto;
+    padding: var(--s8) var(--s3);
+    scroll-margin-top: 4rem;
+  }
+  .about-inner { display: grid; grid-template-columns: 1fr 20rem; gap: var(--s7); align-items: start; }
+  .about-text { max-width: 40rem; }
+  .about-text .links { display: flex; gap: var(--s3); flex-wrap: wrap; margin-top: var(--s3); font-family: var(--font-mono); font-size: .9rem; }
+
+  .about-photo { position: sticky; top: 6rem; }
+  .frame { position: relative; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border-2); }
+  .frame::after { content: ''; position: absolute; inset: 0; background: var(--accent-tint); mix-blend-mode: multiply; opacity: 0; transition: opacity var(--dur) var(--ease); }
+  .frame:hover::after { opacity: .35; }
+  .frame img { display: block; width: 100%; height: auto; filter: grayscale(15%); transition: filter var(--dur) var(--ease); }
+  .frame:hover img { filter: none; }
+
+  @media (max-width: 52rem) {
+    .about-inner { grid-template-columns: 1fr; gap: var(--s5); }
+    .about-photo { position: static; order: -1; max-width: 14rem; }
+  }
+</style>

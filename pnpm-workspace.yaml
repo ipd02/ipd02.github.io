@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+
+# Force sharp to a libvips-patched release (CVE-2026-33327 et al.).
+# Astro pins sharp transitively; we never invoke image processing, but we
+# don't want a known-vulnerable native dep in the tree.
+overrides:
+  sharp: '>=0.35.0'
