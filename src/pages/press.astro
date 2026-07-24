@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+
+const items = [
+  {
+    date: 'Sep 2025',
+    outlet: 'Universidad de Málaga',
+    title: 'Oracle reconoce el talento que genera la Universidad de Málaga',
+    note: 'My team took 1st place nationally in Oracle\u2019s Reto Enseña hackathon.',
+    url: 'https://www.uma.es/sala-de-prensa/noticias/oracle-reconoce-el-talento-que-genera-la-universidad-de-malaga/',
+  },
+  {
+    date: 'Sep 2025',
+    outlet: 'Vida Económica',
+    title: 'Oracle distingue a la Universidad de Málaga por su liderazgo tecnológico nacional',
+    note: 'Coverage of the same national hackathon win.',
+    url: 'https://www.vidaeconomica.com/2025/09/oracle-universidad-malaga-hackathon/',
+  },
+  {
+    date: 'Jul 2025',
+    outlet: 'CODDII',
+    title: 'Ignacio Pineda recibe el Premio Extraordinario por el mejor expediente de su carrera',
+    note: 'The national conference of computing-engineering deans on my Extraordinary Award (25 distinctions).',
+    url: 'https://coddii.org/ignacio-pineda-ingeniero-informatico-por-la-uma-recibe-el-premio-extraordinario-por-el-mejor-expediente-de-su-carrera',
+  },
+  {
+    date: 'Jul 2025',
+    outlet: 'Lucena Noticias',
+    title: 'El joven lucentino Ignacio Pineda recibe el Premio Extraordinario por el mejor expediente de su carrera',
+    note: 'Local coverage of the best-record award for my Computer Science degree.',
+    url: 'https://lucenanoticiasvtv.com/el-joven-lucentino-ignacio-pineda-recibe-el-premio-extraordinario-por-el-mejor-expediente-de-su-carrera/',
+  },
+  {
+    date: '2025',
+    outlet: 'NICS Lab',
+    title: 'Premio Extraordinario Fin de Carrera 2023/2024 — reconocidos por la ETSI Informática',
+    note: 'The research lab\u2019s note on the award and the hackathon result.',
+    url: 'https://www.nics.uma.es/category/news/',
+  },
+  {
+    date: 'May 2016',
+    outlet: 'Lucena Hoy',
+    title: 'Representará a Córdoba en la final de la XXXII Olimpiada Matemática Thales',
+    note: 'Top-5 in the provincial round (500+ students) to reach the regional final.',
+    url: 'https://www.lucenahoy.com/ocio/ignacio-pineda-delgado-alumno-de-la-purisima-representara-a-cordoba-en-la-final-de-la-xxxii-olimpiada-matematica-thales_28209_102.html',
+  },
+];
+---
+<Base
+  title="Press"
+  description="Press and news coverage of Ignacio Pineda — awards, hackathon wins, and academic recognition."
+>
+  <p class="eyebrow"><span class="n">04.</span> <span class="txt">Press</span></p>
+  <h1>In the press</h1>
+  <p class="lead">Selected news coverage — awards, competitions, and academic recognition. Most articles are in Spanish.</p>
+
+  <ol class="press">
+    {items.map((it) => (
+      <li class="entry">
+        <div class="meta">
+          <span class="date">{it.date}</span>
+          <span class="outlet">{it.outlet}</span>
+        </div>
+        <div class="body">
+          <h3 class="headline">
+            <a href={it.url} class="inline-link" rel="noopener">{it.title}</a>
+          </h3>
+          <p class="note">{it.note}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</Base>
+
+<style>
+  h1 { margin-bottom: var(--s2); }
+  .lead { margin-bottom: var(--s6); }
+
+  .press { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .entry {
+    display: grid; grid-template-columns: 10rem 1fr; gap: var(--s3);
+    padding: var(--s4) 0; border-top: 1px solid var(--border);
+  }
+  .entry:last-child { border-bottom: 1px solid var(--border); }
+
+  .meta { display: flex; flex-direction: column; gap: .25rem; padding-top: .15em; }
+  .date { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .03em; color: var(--t-sub); text-transform: uppercase; }
+  .outlet { font-family: var(--font-mono); font-size: .8rem; color: var(--accent); }
+
+  .headline { font-size: 1.1rem; line-height: 1.35; margin: 0 0 var(--s1); font-weight: 600; }
+  .note { color: var(--t-mut); font-size: .95rem; margin: 0; }
+
+  @media (max-width: 40rem) {
+    .entry { grid-template-columns: 1fr; gap: var(--s1); }
+    .meta { flex-direction: row; gap: var(--s2); align-items: baseline; padding-top: 0; }
+  }
+</style>

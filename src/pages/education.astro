@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+
+const education = [
+  {
+    date: '2024 — 2025',
+    title: "Master's in Cybersecurity",
+    org: 'University of La Rioja (UNIR)',
+    detail: 'Final average 9.37/10. Specialisation in IoT/network security. Thesis: ethical hacking methodology in an IoT device.',
+  },
+  {
+    date: '2020 — 2024',
+    title: "Bachelor's in Computer Science Engineering",
+    org: 'University of Málaga',
+    detail: 'Final grade 9.44/10 — top of the class, 25 courses awarded with Distinction. Final project on honeynets for energy-management infrastructures (grade 10).',
+  },
+];
+
+const certs = [
+  'Certified Cyber Security Professional (CCSP) — ISMS Forum, 2025',
+  'Jamf Certified Endpoint Security Associate — Jamf, 2026',
+  'Microsoft Certified: Azure Fundamentals (AZ-900) — 2024',
+  'C2 Advanced English — Cambridge, 2020',
+  'French B1 — Alliance Française, 2018',
+];
+---
+<Base
+  title="Education"
+  description="Ignacio Pineda's education and professional certifications in cybersecurity and computer science."
+>
+  <p class="eyebrow"><span class="n">02.</span> <span class="txt">Education</span></p>
+  <h1>Education &amp; certifications</h1>
+  <p class="lead">Degrees, academic record, and professional certifications.</p>
+
+  <ol class="timeline">
+    {education.map((e) => (
+      <li class="entry">
+        <div class="date">{e.date}</div>
+        <div class="body">
+          <h3 class="role">{e.title} · <span class="org">{e.org}</span></h3>
+          <p class="edu-detail">{e.detail}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <div class="certs-block">
+    <h4 class="certs-title">Certifications</h4>
+    <ul class="certs">
+      {certs.map((c) => <li>{c}</li>)}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  h1 { margin-bottom: var(--s2); }
+  .lead { margin-bottom: var(--s6); }
+
+  .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s6); }
+  .entry { display: grid; grid-template-columns: 9rem 1fr; gap: var(--s3); }
+  .date {
+    font-family: var(--font-mono); font-size: .75rem; letter-spacing: .03em;
+    color: var(--t-sub); padding-top: .35em; text-transform: uppercase;
+  }
+  .role { font-size: 1.15rem; color: var(--t-hi); margin: 0 0 var(--s2); }
+  .org { color: var(--accent); }
+  .edu-detail { color: var(--t); margin: 0; }
+
+  .certs-block { margin-top: var(--s7); display: grid; grid-template-columns: 9rem 1fr; gap: var(--s3); }
+  .certs-title {
+    font-family: var(--font-mono); font-size: .75rem; letter-spacing: .03em;
+    color: var(--t-sub); text-transform: uppercase; margin: 0; padding-top: .35em; font-weight: 500;
+  }
+  .certs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+  .certs li {
+    position: relative; padding-left: 1.4em; color: var(--t);
+    font-family: var(--font-mono); font-size: .9rem;
+  }
+  .certs li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+
+  @media (max-width: 40rem) {
+    .entry { grid-template-columns: 1fr; gap: var(--s1); }
+    .date { padding-top: 0; }
+    .certs-block { grid-template-columns: 1fr; gap: var(--s1); }
+    .certs-title { padding-top: 0; }
+  }
+</style>

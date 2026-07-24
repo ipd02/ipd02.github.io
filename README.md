@@ -65,4 +65,7 @@ in the RSS feed. The "Writing" nav link shows once at least one post exists.
 
 Deployment is automatic. Every push to `main` triggers the workflow in
 `.github/workflows/deploy.yml`, which builds the site and publishes it to
-GitHub Pages. First-time setup is in the repo's `SETUP.md`.
+GitHub Pages.
+
+**Full step-by-step instructions — first-time setup, updating, custom domain,
+and troubleshooting — are in [`DEPLOY.md`](./DEPLOY.md).**
