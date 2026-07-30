@@ -37,5 +37,8 @@ through firmware, network communications, and the physical board. It held up in
 practice and surfaced genuine weaknesses — which was the point: a methodology is
 only worth something if it works on a device you didn't design it around.
 
-The full technical detail lives elsewhere; this is the short version of what the
-project was and why it mattered.
+The full methodology, attacker model, 38-test catalogue, validation tooling and
+sanitized camera case study are published in the
+[`iot-security-testing-methodology`](https://github.com/ipd02/iot-security-testing-methodology)
+repository. This is the short version of what the project was and why it
+mattered.
